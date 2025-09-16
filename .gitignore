@@ -1,6 +1,6 @@
 # Python
 /venv/
-/__pycache__/
+finance/__pycache__/
 /project_finance/__pycache__
 /*.pyc
 /db.sqlite3

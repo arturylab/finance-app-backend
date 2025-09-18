@@ -35,7 +35,17 @@ class UserRegisterSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError("A user with that email already exists.")
         return value
 
+class UserUpdateSerializer(serializers.ModelSerializer):
+    """Serializer para actualizar datos del usuario (solo first_name y last_name)"""
+    class Meta:
+        model = User
+        fields = ['first_name', 'last_name']
 
+    def update(self, instance, validated_data):
+        instance.first_name = validated_data.get('first_name', instance.first_name)
+        instance.last_name = validated_data.get('last_name', instance.last_name)
+        instance.save()
+        return instance
 
 # ---------- Account ----------
 class AccountSerializer(serializers.ModelSerializer):

@@ -2,6 +2,7 @@
 /venv/
 finance/__pycache__/
 /project_finance/__pycache__
+finance/test/__pycache__/
 /*.pyc
 /db.sqlite3
 

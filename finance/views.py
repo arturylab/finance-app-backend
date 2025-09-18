@@ -12,6 +12,7 @@ from .serializers import (
     TransactionSerializer, TransferSerializer
 )
 from .permissions import IsOwner
+from .serializers import UserUpdateSerializer
 
 
 # View for handling user registration
@@ -39,6 +40,22 @@ class UserViewSet(viewsets.ReadOnlyModelViewSet):
         """Endpoint para obtener datos del usuario actual"""
         serializer = self.get_serializer(request.user)
         return Response(serializer.data)
+    
+    def get_serializer_class(self):
+        if self.action == 'update_profile':
+            return UserUpdateSerializer
+        return UserSerializer
+    
+    @action(detail=False, methods=['patch'], url_path='me/profile')
+    def update_profile(self, request):
+        """Endpoint para actualizar el perfil del usuario actual"""
+        serializer = UserUpdateSerializer(request.user, data=request.data, partial=True)
+        if serializer.is_valid():
+            serializer.save()
+            # Devolver los datos actualizados del usuario completo
+            user_serializer = UserSerializer(request.user)
+            return Response(user_serializer.data)
+        return Response(serializer.errors, status=400)
 
 # Mixin to handle owner-specific operations
 class OwnerMixin:

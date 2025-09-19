@@ -6,14 +6,15 @@ This is the backend API for a personal finance application built with Django and
 
 The application is designed to automatically update account balances in response to transactions and transfers, ensuring data integrity.
 
----
-
 ## Live Demo
 
 You can view a live demo of the application here:
 [https://finance-app.arturylab.dev/](https://finance-app.arturylab.dev/)
 
----
+## Frontend
+
+You can view a live frontend repositorie here:
+[https://github.com/arturylab/finance-app-frontend](https://github.com/arturylab/finance-app-frontend)
 
 -----
 
